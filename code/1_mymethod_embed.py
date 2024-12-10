@@ -45,7 +45,7 @@ from peft import (
 # from datasets import load_dataset, Dataset
 # from trl import SFTTrainer, setup_chat_format
 
-# import wandb
+import wandb
 
 import polars as pl
 # import pandas as pd
@@ -102,6 +102,7 @@ def df_to_dataset(df, batch_size, model, tokenizer):
         for i in range(0, len(df), batch_size):
             if i % (batch_size * 1_000) == 0:
                 print(f"CURRENTLY OPERATING ON IX={i}/{len(df)}")
+                wandb.log({"ix": i})
             batch_rows = rows[i: i + batch_size]
 
             # Prepare batched input
@@ -205,6 +206,16 @@ def df_to_dataset_logits(df, model, tokenizer):
 
 
 def main():
+    run = wandb.init(
+        # Set the project where this run will be logged
+        project="optim00",
+        # Track hyperparameters and run metadata
+        # config={
+        #     "learning_rate": 0.01,
+        #     "epochs": 10,
+        # },
+    )
+
     df_train = pl.read_csv("data/1_train_test_split/df_train.csv")
     df_test = pl.read_csv("data/1_train_test_split/df_test.csv")
     df_val = pl.read_csv("data/1_train_test_split/df_validation.csv")
