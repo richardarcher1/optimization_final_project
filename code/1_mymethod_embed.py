@@ -5,7 +5,7 @@ if local_:
     batch_size = 4
 else:
     base_model = "/gpfs/home/rka28/alex/all_weights_all_formats/download_from_hf_in_hf_format/Meta-Llama-3.1-8B-Instruct"
-    batch_size = 16
+    batch_size = 4
 
 # standard python imports
 import os
