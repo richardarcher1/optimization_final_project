@@ -9,6 +9,11 @@ else:
 
 # standard python imports
 import os
+# import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+
+# import torch
+
 # import pandas as pd
 import numpy as np
 
