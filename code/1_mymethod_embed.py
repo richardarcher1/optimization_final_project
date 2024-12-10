@@ -140,6 +140,65 @@ def df_to_dataset(df, batch_size, model, tokenizer):
         dataset = EmbeddingDataset(np.array(embeddings), labels)
     return dataset
 
+def df_to_dataset_logits(df, model, tokenizer):
+    model.eval()
+
+    embeddings = []
+    labels = []
+
+    rows = df.to_dicts()  # returns a list of row dictionaries
+    with torch.no_grad():
+        # USE TQDM LOCAL OR THE IX ON THE CLUSTER
+        # for i in tqdm(range(0, len(df), batch_size)):
+        for i in range(0, len(df), batch_size):
+            if i % (batch_size * 1_000) == 0:
+                print(f"CURRENTLY OPERATING ON IX={i}/{len(df)}")
+            batch_rows = rows[i]
+
+            # Prepare batched input
+            batch_messages = [
+                # [
+                    {"role": "system", "content": batch_rows["system_prompt"]},
+                    {"role": "user", "content": batch_rows["prompt"]}
+                # ]
+                # for r in batch_rows
+            ]
+
+            # Tokenize the entire batch at once
+            inputs_message = tokenizer.apply_chat_template(
+                batch_messages,
+                add_generation_prompt=True,
+                return_tensors="pt",
+                padding=True,
+                truncation=True
+            ).to("cuda")
+
+            # Single forward pass for the entire batch
+            with torch.no_grad():
+                outputs = model(
+                    inputs_message,
+                    output_hidden_states=True,
+                    return_dict=True
+                )
+
+            # Extract embeddings for the entire batch at once
+            # hidden_states = outputs.hidden_states
+            # hidden_states[-2].shape: [batch_size, seq_len, hidden_dim]
+            # We want the last token in seq_len dimension:
+            # embeddings_batch = hidden_states[-2][:, -1, :].cpu().numpy()
+            logits = outputs.logits          # shape: [batch_size, seq_len, vocab_size]
+            next_token_logits = logits[0, -1, :]
+
+            # Add them to a growing list
+            # for j, r in enumerate(batch_rows):
+            embeddings.append(next_token_logits.cpu().numpy())
+            labels.append(batch_rows["stars"])
+
+        # Convert to a Dataset
+        dataset = EmbeddingDataset(np.array(embeddings), labels)
+    return dataset
+
+
 def main():
     df_train = pl.read_csv("data/1_train_test_split/df_train.csv")
     df_test = pl.read_csv("data/1_train_test_split/df_test.csv")
