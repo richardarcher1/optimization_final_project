@@ -121,7 +121,7 @@ Lmod Web Sites
 
 
 GPU CHECK
-Tue Dec 10 11:03:47 2024       
+Tue Dec 10 11:05:34 2024       
 +-----------------------------------------------------------------------------------------+
 | NVIDIA-SMI 550.54.15              Driver Version: 550.54.15      CUDA Version: 12.4     |
 |-----------------------------------------+------------------------+----------------------+
@@ -130,7 +130,7 @@ Tue Dec 10 11:03:47 2024
 |                                         |                        |               MIG M. |
 |=========================================+========================+======================|
 |   0  NVIDIA A100 80GB PCIe          On  |   00000000:21:00.0 Off |                    0 |
-| N/A   56C    P0            282W /  300W |   71935MiB /  81920MiB |    100%      Default |
+| N/A   57C    P0            281W /  300W |   71935MiB /  81920MiB |    100%      Default |
 |                                         |                        |             Disabled |
 +-----------------------------------------+------------------------+----------------------+
 |   1  NVIDIA A100 80GB PCIe          On  |   00000000:81:00.0 Off |                    0 |
@@ -154,7 +154,7 @@ Tue Dec 10 11:03:47 2024
 ===============================================================================================================
 PYTHON SCRIPT:
 `low_cpu_mem_usage` was None, now default to True since model is quantized.
-Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:13<00:41, 13.97s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:26<00:25, 12.83s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:36<00:11, 11.99s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:39<00:00,  8.20s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:39<00:00,  9.85s/it]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:09<00:29,  9.74s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:19<00:19,  9.70s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:28<00:09,  9.50s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:30<00:00,  6.61s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:30<00:00,  7.71s/it]
 NOW OPERATING ON VAL
 CURRENTLY OPERATING ON IX=0/1018
 Traceback (most recent call last):
@@ -213,8 +213,29 @@ Traceback (most recent call last):
              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/transformers/models/llama/modeling_llama.py", line 258, in forward
     down_proj = self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))
-                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~
-torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 284.00 MiB. GPU 0 has a total capacity of 79.14 GiB of which 281.19 MiB is free. Process 2946901 has 70.24 GiB memory in use. Including non-PyTorch memory, this process has 8.61 GiB memory in use. Of the allocated memory 7.68 GiB is allocated by PyTorch, and 450.34 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+                                                                ^^^^^^^^^^^^^^^
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/accelerate/hooks.py", line 170, in new_forward
+    output = module._old_forward(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/bitsandbytes/nn/modules.py", line 484, in forward
+    out = bnb.matmul_4bit(x, self.weight.t(), bias=bias, quant_state=self.weight.quant_state)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/bitsandbytes/autograd/_functions.py", line 579, in matmul_4bit
+    return MatMul4Bit.apply(A, B, out, bias, quant_state)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/torch/autograd/function.py", line 575, in apply
+    return super().apply(*args, **kwargs)  # type: ignore[misc]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/bitsandbytes/autograd/_functions.py", line 509, in forward
+    output = torch.nn.functional.linear(A, F.dequantize_4bit(B, quant_state).to(A.dtype).t(), bias)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 94.00 MiB. GPU 0 has a total capacity of 79.14 GiB of which 7.19 MiB is free. Process 2946901 has 70.24 GiB memory in use. Including non-PyTorch memory, this process has 8.88 GiB memory in use. Of the allocated memory 8.14 GiB is allocated by PyTorch, and 248.11 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
 Traceback (most recent call last):
   File "/gpfs/home/rka28/.conda/envs/gofaster00/bin/accelerate", line 10, in <module>
     sys.exit(main())
