@@ -161,3 +161,4 @@ wandb: ⭐️ View project at https://wandb.ai/yale-som/optim00
 wandb: 🚀 View run at https://wandb.ai/yale-som/optim00/runs/nu02drm8
 `low_cpu_mem_usage` was None, now default to True since model is quantized.
 Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:04<00:13,  4.60s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:09<00:09,  4.55s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:13<00:04,  4.50s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:14<00:00,  3.15s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:14<00:00,  3.66s/it]
+slurmstepd-c6: error: *** JOB 3303123 ON c6 CANCELLED AT 2024-12-10T11:20:30 ***
