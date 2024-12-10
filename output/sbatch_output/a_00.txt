@@ -121,7 +121,7 @@ Lmod Web Sites
 
 
 GPU CHECK
-Tue Dec 10 11:05:34 2024       
+Tue Dec 10 11:08:12 2024       
 +-----------------------------------------------------------------------------------------+
 | NVIDIA-SMI 550.54.15              Driver Version: 550.54.15      CUDA Version: 12.4     |
 |-----------------------------------------+------------------------+----------------------+
@@ -129,17 +129,17 @@ Tue Dec 10 11:05:34 2024
 | Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
 |                                         |                        |               MIG M. |
 |=========================================+========================+======================|
-|   0  NVIDIA A100 80GB PCIe          On  |   00000000:21:00.0 Off |                    0 |
-| N/A   57C    P0            281W /  300W |   71935MiB /  81920MiB |    100%      Default |
-|                                         |                        |             Disabled |
+|   0  Quadro RTX 8000                On  |   00000000:25:00.0 Off |                    0 |
+| N/A   28C    P8             13W /  250W |       0MiB /  46080MiB |      0%      Default |
+|                                         |                        |                  N/A |
 +-----------------------------------------+------------------------+----------------------+
-|   1  NVIDIA A100 80GB PCIe          On  |   00000000:81:00.0 Off |                    0 |
-| N/A   35C    P0             62W /  300W |   57185MiB /  81920MiB |      0%      Default |
-|                                         |                        |             Disabled |
+|   1  Quadro RTX 8000                On  |   00000000:81:00.0 Off |                    0 |
+| N/A   23C    P8             13W /  250W |       0MiB /  46080MiB |      0%      Default |
+|                                         |                        |                  N/A |
 +-----------------------------------------+------------------------+----------------------+
-|   2  NVIDIA A100 80GB PCIe          On  |   00000000:E2:00.0 Off |                    0 |
-| N/A   36C    P0             62W /  300W |   57165MiB /  81920MiB |      0%      Default |
-|                                         |                        |             Disabled |
+|   2  Quadro RTX 8000                On  |   00000000:E2:00.0 Off |                    0 |
+| N/A   24C    P8             13W /  250W |       0MiB /  46080MiB |      0%      Default |
+|                                         |                        |                  N/A |
 +-----------------------------------------+------------------------+----------------------+
                                                                                          
 +-----------------------------------------------------------------------------------------+
@@ -147,105 +147,10 @@ Tue Dec 10 11:05:34 2024
 |  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
 |        ID   ID                                                               Usage      |
 |=========================================================================================|
-|    0   N/A  N/A   2946901      C   python                                      71924MiB |
-|    1   N/A  N/A   2946901      C   python                                      57174MiB |
-|    2   N/A  N/A   2946901      C   python                                      57154MiB |
+|  No running processes found                                                             |
 +-----------------------------------------------------------------------------------------+
 ===============================================================================================================
 PYTHON SCRIPT:
 `low_cpu_mem_usage` was None, now default to True since model is quantized.
-Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:09<00:29,  9.74s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:19<00:19,  9.70s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:28<00:09,  9.50s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:30<00:00,  6.61s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:30<00:00,  7.71s/it]
-NOW OPERATING ON VAL
-CURRENTLY OPERATING ON IX=0/1018
-Traceback (most recent call last):
-  File "/gpfs/home/rka28/optimization_final_project/code/1_mymethod_embed.py", line 261, in <module>
-    main()
-  File "/gpfs/home/rka28/optimization_final_project/code/1_mymethod_embed.py", line 245, in main
-    dataset_val = df_to_dataset(df_val, batch_size, model, tokenizer)
-                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/home/rka28/optimization_final_project/code/1_mymethod_embed.py", line 122, in df_to_dataset
-    outputs = model(
-              ^^^^^^
-  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/accelerate/hooks.py", line 170, in new_forward
-    output = module._old_forward(*args, **kwargs)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/transformers/models/llama/modeling_llama.py", line 1190, in forward
-    outputs = self.model(
-              ^^^^^^^^^^^
-  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/accelerate/hooks.py", line 170, in new_forward
-    output = module._old_forward(*args, **kwargs)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/transformers/models/llama/modeling_llama.py", line 945, in forward
-    layer_outputs = decoder_layer(
-                    ^^^^^^^^^^^^^^
-  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/accelerate/hooks.py", line 170, in new_forward
-    output = module._old_forward(*args, **kwargs)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/transformers/models/llama/modeling_llama.py", line 692, in forward
-    hidden_states = self.mlp(hidden_states)
-                    ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/accelerate/hooks.py", line 170, in new_forward
-    output = module._old_forward(*args, **kwargs)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/transformers/models/llama/modeling_llama.py", line 258, in forward
-    down_proj = self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))
-                                                                ^^^^^^^^^^^^^^^
-  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
-    return forward_call(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/accelerate/hooks.py", line 170, in new_forward
-    output = module._old_forward(*args, **kwargs)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/bitsandbytes/nn/modules.py", line 484, in forward
-    out = bnb.matmul_4bit(x, self.weight.t(), bias=bias, quant_state=self.weight.quant_state)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/bitsandbytes/autograd/_functions.py", line 579, in matmul_4bit
-    return MatMul4Bit.apply(A, B, out, bias, quant_state)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/torch/autograd/function.py", line 575, in apply
-    return super().apply(*args, **kwargs)  # type: ignore[misc]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/bitsandbytes/autograd/_functions.py", line 509, in forward
-    output = torch.nn.functional.linear(A, F.dequantize_4bit(B, quant_state).to(A.dtype).t(), bias)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 94.00 MiB. GPU 0 has a total capacity of 79.14 GiB of which 7.19 MiB is free. Process 2946901 has 70.24 GiB memory in use. Including non-PyTorch memory, this process has 8.88 GiB memory in use. Of the allocated memory 8.14 GiB is allocated by PyTorch, and 248.11 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-Traceback (most recent call last):
-  File "/gpfs/home/rka28/.conda/envs/gofaster00/bin/accelerate", line 10, in <module>
-    sys.exit(main())
-             ^^^^^^
-  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/accelerate/commands/accelerate_cli.py", line 48, in main
-    args.func(args)
-  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/accelerate/commands/launch.py", line 1168, in launch_command
-    simple_launcher(args)
-  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/accelerate/commands/launch.py", line 763, in simple_launcher
-    raise subprocess.CalledProcessError(returncode=process.returncode, cmd=cmd)
-subprocess.CalledProcessError: Command '['/gpfs/home/rka28/.conda/envs/gofaster00/bin/python3.12', 'code/1_mymethod_embed.py']' returned non-zero exit status 1.
-python path executed
-SBATCH FINISHED
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:04<00:13,  4.47s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:08<00:08,  4.47s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:13<00:04,  4.42s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:14<00:00,  3.09s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:14<00:00,  3.59s/it]
+slurmstepd-c6: error: *** JOB 3303122 ON c6 CANCELLED AT 2024-12-10T11:12:13 ***
