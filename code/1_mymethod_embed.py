@@ -95,7 +95,7 @@ def df_to_dataset(df, batch_size, model, tokenizer):
         # USE TQDM LOCAL OR THE IX ON THE CLUSTER
         # for i in tqdm(range(0, len(df), batch_size)):
         for i in range(0, len(df), batch_size):
-            if i % (batch_size * 20) == 0:
+            if i % (batch_size * 1_000) == 0:
                 print(f"CURRENTLY OPERATING ON IX={i}/{len(df)}")
             batch_rows = rows[i: i + batch_size]
 
