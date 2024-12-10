@@ -209,7 +209,7 @@ def main():
     run = wandb.init(
         # Set the project where this run will be logged
         project="optim00",
-        name="train1"
+        name="train2"
         # Track hyperparameters and run metadata
         # config={
         #     "learning_rate": 0.01,
@@ -218,7 +218,10 @@ def main():
     )
 
     # df_train = pl.read_csv("data/1_train_test_split/df_train.csv")
-    df_train = pl.read_csv("data/1_train_test_split/train_broken_out/df_train1.csv")
+    # df_train = pl.read_csv("data/1_train_test_split/train_broken_out/df_train1.csv")
+    df_train = pl.read_csv("data/1_train_test_split/train_broken_out/df_train2.csv")
+    # df_train = pl.read_csv("data/1_train_test_split/train_broken_out/df_train3.csv")
+    # df_train = pl.read_csv("data/1_train_test_split/train_broken_out/df_train4.csv")
     # df_test = pl.read_csv("data/1_train_test_split/df_test.csv")
     # df_val = pl.read_csv("data/1_train_test_split/df_validation.csv")
 
