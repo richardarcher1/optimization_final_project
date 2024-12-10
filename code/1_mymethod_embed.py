@@ -257,11 +257,12 @@ def main():
     if model.config.pad_token_id is None:
         model.config.pad_token_id = model.config.eos_token_id
 
-    print("NOW OPERATING ON VAL")
-    dataset_val = df_to_dataset(df_val, batch_size, model, tokenizer)
-    print("NOW SAVING VAL")
-    torch.save(dataset_val, "data/2_training_ready/mymethod/take00/val.pt")
-    print("VAL SAVED")
+    # print("NOW OPERATING ON VAL")
+    # dataset_val = df_to_dataset(df_val, batch_size, model, tokenizer)
+    # print("NOW SAVING VAL")
+    # torch.save(dataset_val, "data/2_training_ready/mymethod/take00/val.pt")
+    # print("VAL SAVED")
+    print("NOW RUNNING TEST")
     dataset_test = df_to_dataset(df_test, batch_size, model, tokenizer)
     print("NOW SAVING TEST")
     torch.save(dataset_test, "data/2_training_ready/mymethod/take00/testing.pt")
