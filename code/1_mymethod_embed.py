@@ -209,6 +209,7 @@ def main():
     run = wandb.init(
         # Set the project where this run will be logged
         project="optim00",
+        name="train1"
         # Track hyperparameters and run metadata
         # config={
         #     "learning_rate": 0.01,
@@ -216,13 +217,14 @@ def main():
         # },
     )
 
-    df_train = pl.read_csv("data/1_train_test_split/df_train.csv")
-    df_test = pl.read_csv("data/1_train_test_split/df_test.csv")
-    df_val = pl.read_csv("data/1_train_test_split/df_validation.csv")
+    # df_train = pl.read_csv("data/1_train_test_split/df_train.csv")
+    df_train = pl.read_csv("data/1_train_test_split/train_broken_out/df_train1.csv")
+    # df_test = pl.read_csv("data/1_train_test_split/df_test.csv")
+    # df_val = pl.read_csv("data/1_train_test_split/df_validation.csv")
 
     df_train = add_prompts_to_df(df_train)
-    df_test = add_prompts_to_df(df_test)
-    df_val = add_prompts_to_df(df_val)
+    # df_test = add_prompts_to_df(df_test)
+    # df_val = add_prompts_to_df(df_val)
 
     tokenizer = AutoTokenizer.from_pretrained(
         base_model,
