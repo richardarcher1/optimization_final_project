@@ -121,7 +121,7 @@ Lmod Web Sites
 
 
 GPU CHECK
-Wed Dec 11 09:54:02 2024       
+Wed Dec 11 10:02:33 2024       
 +-----------------------------------------------------------------------------------------+
 | NVIDIA-SMI 550.54.15              Driver Version: 550.54.15      CUDA Version: 12.4     |
 |-----------------------------------------+------------------------+----------------------+
@@ -130,15 +130,15 @@ Wed Dec 11 09:54:02 2024
 |                                         |                        |               MIG M. |
 |=========================================+========================+======================|
 |   0  NVIDIA A100 80GB PCIe          On  |   00000000:21:00.0 Off |                    0 |
-| N/A   25C    P0             41W /  300W |       0MiB /  81920MiB |      0%      Default |
+| N/A   58C    P0            303W /  300W |   70179MiB /  81920MiB |    100%      Default |
 |                                         |                        |             Disabled |
 +-----------------------------------------+------------------------+----------------------+
 |   1  NVIDIA A100 80GB PCIe          On  |   00000000:81:00.0 Off |                    0 |
-| N/A   24C    P0             41W /  300W |       0MiB /  81920MiB |      0%      Default |
+| N/A   35C    P0             62W /  300W |   61053MiB /  81920MiB |      0%      Default |
 |                                         |                        |             Disabled |
 +-----------------------------------------+------------------------+----------------------+
 |   2  NVIDIA A100 80GB PCIe          On  |   00000000:E2:00.0 Off |                    0 |
-| N/A   26C    P0             41W /  300W |       0MiB /  81920MiB |      0%      Default |
+| N/A   36C    P0             62W /  300W |   60989MiB /  81920MiB |      0%      Default |
 |                                         |                        |             Disabled |
 +-----------------------------------------+------------------------+----------------------+
                                                                                          
@@ -147,10 +147,98 @@ Wed Dec 11 09:54:02 2024
 |  GPU   GI   CI        PID   Type   Process name                              GPU Memory |
 |        ID   ID                                                               Usage      |
 |=========================================================================================|
-|  No running processes found                                                             |
+|    0   N/A  N/A   3017529      C   python                                      70168MiB |
+|    1   N/A  N/A   3017529      C   python                                      61042MiB |
+|    2   N/A  N/A   3017529      C   python                                      60978MiB |
 +-----------------------------------------------------------------------------------------+
 ===============================================================================================================
 PYTHON SCRIPT:
 loading embedder
 embedding train dataset
-Batches:   0%|          | 0/1661 [00:00<?, ?it/s]Batches:   0%|          | 1/1661 [00:10<4:54:20, 10.64s/it]Batches:   0%|          | 2/1661 [00:20<4:39:32, 10.11s/it]Batches:   0%|          | 3/1661 [00:30<4:36:26, 10.00s/it]Batches:   0%|          | 4/1661 [00:40<4:33:43,  9.91s/it]Batches:   0%|          | 5/1661 [00:49<4:32:18,  9.87s/it]Batches:   0%|          | 6/1661 [00:59<4:31:24,  9.84s/it]Batches:   0%|          | 7/1661 [01:09<4:30:49,  9.82s/it]Batches:   0%|          | 8/1661 [01:19<4:30:30,  9.82s/it]Batches:   1%|          | 9/1661 [01:29<4:30:15,  9.82s/it]Batches:   1%|          | 10/1661 [01:38<4:30:05,  9.82s/it]Batches:   1%|          | 11/1661 [01:48<4:29:56,  9.82s/it]Batches:   1%|          | 12/1661 [01:58<4:29:50,  9.82s/it]Batches:   1%|          | 13/1661 [02:08<4:29:44,  9.82s/it]Batches:   1%|          | 14/1661 [02:18<4:29:39,  9.82s/it]Batches:   1%|          | 15/1661 [02:27<4:29:37,  9.83s/it]Batches:   1%|          | 16/1661 [02:37<4:29:31,  9.83s/it]Batches:   1%|          | 17/1661 [02:47<4:29:28,  9.83s/it]Batches:   1%|          | 18/1661 [02:57<4:29:22,  9.84s/it]Batches:   1%|          | 19/1661 [03:07<4:29:17,  9.84s/it]
+Batches:   0%|          | 0/1661 [00:00<?, ?it/s]Batches:   0%|          | 0/1661 [00:01<?, ?it/s]
+Traceback (most recent call last):
+  File "/gpfs/home/rka28/optimization_final_project/code/2_bigembed.py", line 83, in <module>
+    main()
+  File "/gpfs/home/rka28/optimization_final_project/code/2_bigembed.py", line 44, in main
+    train_embeddings = embedder.encode(train_texts, batch_size=512, convert_to_numpy=True, show_progress_bar=True)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/sentence_transformers/SentenceTransformer.py", line 623, in encode
+    out_features = self.forward(features, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/sentence_transformers/SentenceTransformer.py", line 690, in forward
+    input = module(input, **module_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/sentence_transformers/models/Transformer.py", line 393, in forward
+    output_states = self.auto_model(**trans_features, **kwargs, return_dict=False)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/transformers/models/xlm_roberta/modeling_xlm_roberta.py", line 977, in forward
+    encoder_outputs = self.encoder(
+                      ^^^^^^^^^^^^^
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/transformers/models/xlm_roberta/modeling_xlm_roberta.py", line 632, in forward
+    layer_outputs = layer_module(
+                    ^^^^^^^^^^^^^
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/transformers/models/xlm_roberta/modeling_xlm_roberta.py", line 563, in forward
+    layer_output = apply_chunking_to_forward(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/transformers/pytorch_utils.py", line 248, in apply_chunking_to_forward
+    return forward_fn(*input_tensors)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/transformers/models/xlm_roberta/modeling_xlm_roberta.py", line 575, in feed_forward_chunk
+    intermediate_output = self.intermediate(attention_output)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/transformers/models/xlm_roberta/modeling_xlm_roberta.py", line 474, in forward
+    hidden_states = self.intermediate_act_fn(hidden_states)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/transformers/activations.py", line 78, in forward
+    return self.act(input)
+           ^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.00 GiB. GPU 0 has a total capacity of 79.14 GiB of which 1.01 GiB is free. Process 3017529 has 68.52 GiB memory in use. Including non-PyTorch memory, this process has 9.59 GiB memory in use. Of the allocated memory 8.10 GiB is allocated by PyTorch, and 1.00 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Traceback (most recent call last):
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/bin/accelerate", line 10, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/accelerate/commands/accelerate_cli.py", line 48, in main
+    args.func(args)
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/accelerate/commands/launch.py", line 1168, in launch_command
+    simple_launcher(args)
+  File "/gpfs/home/rka28/.conda/envs/gofaster00/lib/python3.12/site-packages/accelerate/commands/launch.py", line 763, in simple_launcher
+    raise subprocess.CalledProcessError(returncode=process.returncode, cmd=cmd)
+subprocess.CalledProcessError: Command '['/gpfs/home/rka28/.conda/envs/gofaster00/bin/python3.12', 'code/2_bigembed.py']' returned non-zero exit status 1.
+python path executed
+SBATCH FINISHED
