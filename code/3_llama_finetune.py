@@ -52,7 +52,7 @@ def main():
         }
     )
 
-    new_model = "weights/sft/run00"
+    new_model = "weights/sft/run01"
 
     PATH_data_to_train_on = "data/1_train_test_split/df_train.csv"
     PATH_data_to_test_on = "data/1_train_test_split/df_test.csv"
@@ -106,8 +106,8 @@ def main():
     df_train = pl.read_csv(PATH_data_to_train_on)
     df_test = pl.read_csv(PATH_data_to_test_on)
 
-    df_train = df_train.sample(n=100_000, seed=0)
-    df_test = df_test.sample(n=10_000, seed=0)
+    # df_train = df_train.sample(n=100_000, seed=0)
+    # df_test = df_test.sample(n=10_000, seed=0)
 
     lst_system_prompt, lst_prompt = [], []
     for row in df_train.iter_rows(named=True):
