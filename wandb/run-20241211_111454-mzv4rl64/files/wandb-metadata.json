@@ -1,0 +1,87 @@
+{
+  "os": "Linux-4.18.0-513.18.1.el8_9.x86_64-x86_64-with-glibc2.28",
+  "python": "3.12.2",
+  "startedAt": "2024-12-11T16:14:54.618261Z",
+  "program": "/gpfs/home/rka28/optimization_final_project/code/3_llama_finetune.py",
+  "codePath": "code/3_llama_finetune.py",
+  "email": "richard.archer@yale.edu",
+  "root": "/gpfs/home/rka28/optimization_final_project",
+  "host": "c7.cluster",
+  "username": "rka28",
+  "executable": "/gpfs/home/rka28/.conda/envs/gofaster00/bin/python3.12",
+  "codePathLocal": "code/3_llama_finetune.py",
+  "cpu_count": 128,
+  "cpu_count_logical": 128,
+  "gpu": "Quadro RTX 8000",
+  "gpu_count": 3,
+  "disk": {
+    "/": {
+      "total": "270287851520",
+      "used": "13321433088"
+    }
+  },
+  "memory": {
+    "total": "540575703040"
+  },
+  "cpu": {
+    "count": 128,
+    "countLogical": 128
+  },
+  "gpu_nvidia": [
+    {
+      "name": "Quadro RTX 8000",
+      "memoryTotal": "48318382080",
+      "cudaCores": 4608,
+      "architecture": "Turing"
+    },
+    {
+      "name": "Quadro RTX 8000",
+      "memoryTotal": "48318382080",
+      "cudaCores": 4608,
+      "architecture": "Turing"
+    },
+    {
+      "name": "Quadro RTX 8000",
+      "memoryTotal": "48318382080",
+      "cudaCores": 4608,
+      "architecture": "Turing"
+    }
+  ],
+  "slurm": {
+    "cluster_name": "(null)",
+    "conf": "/var/spool/slurm/d/conf-cache/slurm.conf",
+    "cpus_on_node": "24",
+    "cpus_per_task": "24",
+    "gpus_on_node": "3",
+    "gtids": "0",
+    "job_account": "hpcdefault",
+    "job_cpus_per_node": "24",
+    "job_end_time": "1734106487",
+    "job_gid": "50383",
+    "job_gpus": "0,1,2",
+    "job_id": "3303167",
+    "job_name": "3_",
+    "job_nodelist": "c7",
+    "job_num_nodes": "1",
+    "job_partition": "normal",
+    "job_qos": "normal",
+    "job_start_time": "1733933687",
+    "job_uid": "50378",
+    "job_user": "rka28",
+    "jobid": "3303167",
+    "localid": "0",
+    "nnodes": "1",
+    "nodeid": "0",
+    "nodelist": "c7",
+    "prio_process": "0",
+    "procid": "0",
+    "submit_dir": "/gpfs/home/rka28/optimization_final_project",
+    "submit_host": "hpc-sms.som.yale.edu",
+    "task_pid": "545976",
+    "tasks_per_node": "1",
+    "topology_addr": "c7",
+    "topology_addr_pattern": "node",
+    "tres_per_task": "cpu:24"
+  },
+  "cudaVersion": "12.4"
+}
