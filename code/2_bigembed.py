@@ -19,9 +19,9 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 
 def main():
-    df_train = pl.read_csv("../data/1_train_test_split/df_train.csv")
-    df_test = pl.read_csv("../data/1_train_test_split/df_test.csv")
-    df_validation = pl.read_csv("../data/1_train_test_split/df_validation.csv")
+    df_train = pl.read_csv("data/1_train_test_split/df_train.csv")
+    df_test = pl.read_csv("data/1_train_test_split/df_test.csv")
+    df_validation = pl.read_csv("data/1_train_test_split/df_validation.csv")
 
     train_texts = df_train["text"].to_list()
     train_labels = df_train["stars"].to_list()
@@ -71,9 +71,9 @@ def main():
     # torch.save(test_dataset, '../data/2_training_ready/embedding00/test_dataset00.pth')
     # torch.save(val_dataset, '../data/2_training_ready/embedding00/val_dataset00.pth')
 
-    torch.save(train_dataset, '../data/2_training_ready/embedding00/train_dataset01.pth')
-    torch.save(test_dataset, '../data/2_training_ready/embedding00/test_dataset01.pth')
-    torch.save(val_dataset, '../data/2_training_ready/embedding00/val_dataset01.pth')
+    torch.save(train_dataset, 'data/2_training_ready/embedding00/train_dataset01.pth')
+    torch.save(test_dataset, 'data/2_training_ready/embedding00/test_dataset01.pth')
+    torch.save(val_dataset, 'data/2_training_ready/embedding00/val_dataset01.pth')
 
     return 1
 
