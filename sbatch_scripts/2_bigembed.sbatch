@@ -5,9 +5,9 @@
 #SBATCH --gres=gpu:3
 #SBATCH --gres-flags=enforce-binding
 #SBATCH --time=2-00:00:00
-#SBATCH --exclude=c[1-16]
+#SBATCH --exclude=c[11,17,18,19,20]
+# #SBATCH --exclude=c[1-16]
 # #SBATCH --exclude=c[11]
-# #SBATCH --exclude=c[11,17,18,19,20]
 # #SBATCH --nodelist=c[9,10,12,13,17,18,19,20]
 # #SBATCH --exclude=c[1-16]
 
