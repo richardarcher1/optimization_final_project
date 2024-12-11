@@ -1,7 +1,7 @@
 #!/bin/bash -l
 #SBATCH --job-name=2_
 #SBATCH --cpus-per-task=24
-#SBATCH --output=output/sbatch_output/b_00.txt
+#SBATCH --output=output/sbatch_output/2_00.txt
 #SBATCH --gres=gpu:3
 #SBATCH --gres-flags=enforce-binding
 #SBATCH --time=2-00:00:00
