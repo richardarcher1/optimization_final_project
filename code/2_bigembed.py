@@ -4,6 +4,8 @@ if local_:
     from tqdm.notebook import tqdm
 else:
     from tqdm import tqdm
+    import os
+    os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 import json
 # import pandas as pd
@@ -39,13 +41,13 @@ def main():
     embedder = SentenceTransformer(model_name, device="cuda")
 
     print("embedding train dataset")
-    train_embeddings = embedder.encode(train_texts, batch_size=128, convert_to_numpy=True, show_progress_bar=True)
+    train_embeddings = embedder.encode(train_texts, batch_size=512, convert_to_numpy=True, show_progress_bar=True)
 
     print("embedding test dataset")
-    test_embeddings = embedder.encode(test_texts, batch_size=128, convert_to_numpy=True,show_progress_bar=True)
+    test_embeddings = embedder.encode(test_texts, batch_size=512, convert_to_numpy=True,show_progress_bar=True)
 
     print("embedding val dataset")
-    val_embeddings = embedder.encode(val_texts, batch_size=128, convert_to_numpy=True,show_progress_bar=True)
+    val_embeddings = embedder.encode(val_texts, batch_size=512, convert_to_numpy=True,show_progress_bar=True)
 
     class StarRatingDataset(Dataset):
         def __init__(self, X, y):
