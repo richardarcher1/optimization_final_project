@@ -218,14 +218,14 @@ def main():
     )
 
     # df_train = pl.read_csv("data/1_train_test_split/df_train.csv")
-    df_train = pl.read_csv("data/1_train_test_split/train_broken_out/df_train1.csv")
-    save_path = "data/2_training_ready/mymethod/take00/training1.pt"
+    # df_train = pl.read_csv("data/1_train_test_split/train_broken_out/df_train1.csv")
+    # save_path = "data/2_training_ready/mymethod/take00/training1.pt"
     # df_train = pl.read_csv("data/1_train_test_split/train_broken_out/df_train2.csv")
     # save_path = "data/2_training_ready/mymethod/take00/training2.pt"
     # df_train = pl.read_csv("data/1_train_test_split/train_broken_out/df_train3.csv")
     # save_path = "data/2_training_ready/mymethod/take00/training3.pt"
-    # df_train = pl.read_csv("data/1_train_test_split/train_broken_out/df_train4.csv")
-    # save_path = "data/2_training_ready/mymethod/take00/training4.pt"
+    df_train = pl.read_csv("data/1_train_test_split/train_broken_out/df_train4.csv")
+    save_path = "data/2_training_ready/mymethod/take00/training4.pt"
     # df_test = pl.read_csv("data/1_train_test_split/df_test.csv")
     # df_val = pl.read_csv("data/1_train_test_split/df_validation.csv")
 
