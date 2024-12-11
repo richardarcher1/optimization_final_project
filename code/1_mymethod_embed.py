@@ -10,7 +10,7 @@ else:
 # standard python imports
 import os
 # import os
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+# os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 # import torch
 
@@ -131,11 +131,18 @@ def df_to_dataset(df, batch_size, model, tokenizer):
                     return_dict=True
                 )
 
+            # FOR QUANTIZED MODEL
+            # # Extract embeddings for the entire batch at once
+            # hidden_states = outputs.hidden_states
+            # # hidden_states[-2].shape: [batch_size, seq_len, hidden_dim]
+            # # We want the last token in seq_len dimension:
+            # embeddings_batch = hidden_states[-2][:, -1, :].cpu().numpy()
+
+            # FOR HANDLING BFLOAG
             # Extract embeddings for the entire batch at once
             hidden_states = outputs.hidden_states
-            # hidden_states[-2].shape: [batch_size, seq_len, hidden_dim]
-            # We want the last token in seq_len dimension:
-            embeddings_batch = hidden_states[-2][:, -1, :].cpu().numpy()
+            # Convert to float32 before moving to CPU and then NumPy
+            embeddings_batch = hidden_states[-2][:, -1, :].to(dtype=torch.float32).cpu().numpy()
 
             # Add them to a growing list
             for j, r in enumerate(batch_rows):
