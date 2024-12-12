@@ -59,20 +59,20 @@ def main():
 
     print("TRY BIGGER GPU")
 
-    # nf4_config = BitsAndBytesConfig(
-    #     load_in_4bit=True,
-    #     bnb_4bit_quant_type="nf4",
-    #     bnb_4bit_compute_dtype=torch.float16,  # Match input dtype
-    # )
-    #
-    # model = LlamaForCausalLM.from_pretrained(base_model, quantization_config=nf4_config, device_map="auto")
-
-    model = AutoModelForCausalLM.from_pretrained(
-        base_model,
-        device_map="auto",
-        # device_map="balanced",
-        torch_dtype=torch.bfloat16
+    nf4_config = BitsAndBytesConfig(
+        load_in_8bit=True, # NOTE WAS 4 BIT
+        bnb_4bit_quant_type="nf4",
+        bnb_4bit_compute_dtype=torch.float16,  # Match input dtype
     )
+    #
+    model = LlamaForCausalLM.from_pretrained(base_model, quantization_config=nf4_config, device_map="auto")
+
+    # model = AutoModelForCausalLM.from_pretrained(
+    #     base_model,
+    #     device_map="auto",
+    #     device_map="balanced",
+        # torch_dtype=torch.bfloat16
+    # )
 
     tokenizer = AutoTokenizer.from_pretrained(
         base_model,
