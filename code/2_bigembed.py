@@ -20,6 +20,23 @@ from torch.utils.data import Dataset#, DataLoader
 import numpy as np
 from sentence_transformers import SentenceTransformer
 
+
+class StarRatingDataset(Dataset):
+    def __init__(self, X, y):
+        self.X = X
+        self.y = y
+
+    def __len__(self):
+        return len(self.X)
+
+    def __getitem__(self, idx):
+        x = torch.tensor(self.X[idx], dtype=torch.float32)
+        # Convert label to a one-hot vector: label in {1,...,5} -> one-hot of length 5
+        y_onehot = torch.zeros(5)
+        y_onehot[self.y[idx] - 1] = 1.0
+        return x, y_onehot
+
+
 def main():
     df_train = pl.read_csv("data/1_train_test_split/df_train.csv")
     df_test = pl.read_csv("data/1_train_test_split/df_test.csv")
@@ -43,28 +60,14 @@ def main():
     # print("embedding train dataset")
     train_embeddings = embedder.encode(train_texts, batch_size=128, convert_to_numpy=True, show_progress_bar=True)
 
-    print("embedding test dataset")
+    # print("embedding test dataset")
     test_embeddings = embedder.encode(test_texts, batch_size=128, convert_to_numpy=True,show_progress_bar=True)
 
     print("embedding val dataset")
     val_embeddings = embedder.encode(val_texts, batch_size=128, convert_to_numpy=True,show_progress_bar=True)
 
-    class StarRatingDataset(Dataset):
-        def __init__(self, X, y):
-            self.X = X
-            self.y = y
 
-        def __len__(self):
-            return len(self.X)
-
-        def __getitem__(self, idx):
-            x = torch.tensor(self.X[idx], dtype=torch.float32)
-            # Convert label to a one-hot vector: label in {1,...,5} -> one-hot of length 5
-            y_onehot = torch.zeros(5)
-            y_onehot[self.y[idx] - 1] = 1.0
-            return x, y_onehot
-
-    print("asldfkj")
+    # print("asldfkj")
     train_dataset = StarRatingDataset(train_embeddings, train_labels)
     test_dataset = StarRatingDataset(test_embeddings, test_labels)
     val_dataset = StarRatingDataset(val_embeddings, val_labels)
