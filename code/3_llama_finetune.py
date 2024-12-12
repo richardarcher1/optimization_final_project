@@ -44,7 +44,7 @@ def main():
 
     wandb.init(
         project="optim00",  # Change this to your project name
-        name="cluster_run_00",
+        name="cluster_run_01",
         config={
             "model_name": "quant_for_hpc",
             "task": "response_only",
@@ -52,18 +52,27 @@ def main():
         }
     )
 
-    new_model = "weights/sft/run01"
+    new_model = "weights/sft/run02"
 
     PATH_data_to_train_on = "data/1_train_test_split/df_train.csv"
     PATH_data_to_test_on = "data/1_train_test_split/df_test.csv"
 
-    nf4_config = BitsAndBytesConfig(
-        load_in_4bit=True,
-        bnb_4bit_quant_type="nf4",
-        bnb_4bit_compute_dtype=torch.float16,  # Match input dtype
-    )
+    print("TRY BIGGER GPU")
 
-    model = LlamaForCausalLM.from_pretrained(base_model, quantization_config=nf4_config, device_map="auto")
+    # nf4_config = BitsAndBytesConfig(
+    #     load_in_4bit=True,
+    #     bnb_4bit_quant_type="nf4",
+    #     bnb_4bit_compute_dtype=torch.float16,  # Match input dtype
+    # )
+    #
+    # model = LlamaForCausalLM.from_pretrained(base_model, quantization_config=nf4_config, device_map="auto")
+
+    model = AutoModelForCausalLM.from_pretrained(
+        base_model,
+        device_map="auto",
+        # device_map="balanced",
+        torch_dtype=torch.bfloat16
+    )
 
     tokenizer = AutoTokenizer.from_pretrained(
         base_model,
@@ -77,8 +86,8 @@ def main():
     model.config.pad_token_id = 128004  # tokenizer.convert_tokens_to_ids("<|finetune_right_pad_id|>")
 
     peft_config = LoraConfig(
-        r=4,
-        lora_alpha=8,
+        r=16,
+        lora_alpha=32,
         lora_dropout=0.05,
         bias="none",
         task_type="CAUSAL_LM",
@@ -175,9 +184,9 @@ def main():
     training_args = SFTConfig(
         max_seq_length=max_seq_length_needed,
         output_dir=new_model,
-        per_device_train_batch_size=4,
-        per_device_eval_batch_size=1,
-        gradient_accumulation_steps=1,  # 4
+        per_device_train_batch_size=8,
+        per_device_eval_batch_size=2,
+        gradient_accumulation_steps=2,  # 4
         # optim="adamw_torch",
         optim="paged_adamw_32bit",
         # optim="paged_adamw_8bit",

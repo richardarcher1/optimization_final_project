@@ -164,3 +164,8 @@ cython_debug/
 data
 data/
 data/*
+
+weights
+weights*
+weights/
+weights/*

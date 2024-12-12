@@ -73,8 +73,6 @@ def add_prompts_to_df(df):
     return df
 
 
-
-
 class EmbeddingDataset(Dataset):
     def __init__(self, embeddings, labels):
         # embeddings: list of numpy arrays or torch tensors
