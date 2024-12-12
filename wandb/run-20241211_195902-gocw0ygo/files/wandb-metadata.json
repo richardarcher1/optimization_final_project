@@ -1,0 +1,87 @@
+{
+  "os": "Linux-4.18.0-513.18.1.el8_9.x86_64-x86_64-with-glibc2.28",
+  "python": "3.12.2",
+  "startedAt": "2024-12-12T00:59:02.587798Z",
+  "program": "/gpfs/home/rka28/optimization_final_project/code/3_llama_finetune.py",
+  "codePath": "code/3_llama_finetune.py",
+  "email": "richard.archer@yale.edu",
+  "root": "/gpfs/home/rka28/optimization_final_project",
+  "host": "c17.cluster",
+  "username": "rka28",
+  "executable": "/gpfs/home/rka28/.conda/envs/gofaster00/bin/python3.12",
+  "codePathLocal": "code/3_llama_finetune.py",
+  "cpu_count": 128,
+  "cpu_count_logical": 256,
+  "gpu": "NVIDIA A100 80GB PCIe",
+  "gpu_count": 3,
+  "disk": {
+    "/": {
+      "total": "540856102912",
+      "used": "13335494656"
+    }
+  },
+  "memory": {
+    "total": "1081712205824"
+  },
+  "cpu": {
+    "count": 128,
+    "countLogical": 256
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA A100 80GB PCIe",
+      "memoryTotal": "85899345920",
+      "cudaCores": 6912,
+      "architecture": "Ampere"
+    },
+    {
+      "name": "NVIDIA A100 80GB PCIe",
+      "memoryTotal": "85899345920",
+      "cudaCores": 6912,
+      "architecture": "Ampere"
+    },
+    {
+      "name": "NVIDIA A100 80GB PCIe",
+      "memoryTotal": "85899345920",
+      "cudaCores": 6912,
+      "architecture": "Ampere"
+    }
+  ],
+  "slurm": {
+    "cluster_name": "(null)",
+    "conf": "/var/spool/slurm/d/conf-cache/slurm.conf",
+    "cpus_on_node": "24",
+    "cpus_per_task": "24",
+    "gpus_on_node": "3",
+    "gtids": "0",
+    "job_account": "hpcdefault",
+    "job_cpus_per_node": "24",
+    "job_end_time": "1734137884",
+    "job_gid": "50383",
+    "job_gpus": "0,1,2",
+    "job_id": "3303181",
+    "job_name": "finetune00",
+    "job_nodelist": "c17",
+    "job_num_nodes": "1",
+    "job_partition": "normal",
+    "job_qos": "normal",
+    "job_start_time": "1733965084",
+    "job_uid": "50378",
+    "job_user": "rka28",
+    "jobid": "3303181",
+    "localid": "0",
+    "nnodes": "1",
+    "nodeid": "0",
+    "nodelist": "c17",
+    "prio_process": "0",
+    "procid": "0",
+    "submit_dir": "/gpfs/home/rka28/optimization_final_project",
+    "submit_host": "hpc-sms.som.yale.edu",
+    "task_pid": "1949657",
+    "tasks_per_node": "1",
+    "topology_addr": "c17",
+    "topology_addr_pattern": "node",
+    "tres_per_task": "cpu:24"
+  },
+  "cudaVersion": "12.4"
+}

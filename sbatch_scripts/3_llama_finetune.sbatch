@@ -1,7 +1,7 @@
 #!/bin/bash -l
 #SBATCH --job-name=finetune00
 #SBATCH --cpus-per-task=24
-#SBATCH --output=output/sbatch_output/finetune00.txt
+#SBATCH --output=output/sbatch_output/finetune01.txt
 #SBATCH --gres=gpu:3
 #SBATCH --gres-flags=enforce-binding
 #SBATCH --time=2-00:00:00
