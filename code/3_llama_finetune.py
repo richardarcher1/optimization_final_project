@@ -44,7 +44,7 @@ def main():
 
     wandb.init(
         project="optim00",  # Change this to your project name
-        name="cluster_run_01",
+        name="essay_g_epoch",
         config={
             "model_name": "quant_for_hpc",
             "task": "response_only",
@@ -52,7 +52,7 @@ def main():
         }
     )
 
-    new_model = "weights/sft/run02"
+    new_model = "weights/run00"
 
     PATH_data_to_train_on = "data/1_train_test_split/df_train.csv"
     PATH_data_to_test_on = "data/1_train_test_split/df_test.csv"
@@ -184,13 +184,13 @@ def main():
     training_args = SFTConfig(
         max_seq_length=max_seq_length_needed,
         output_dir=new_model,
-        per_device_train_batch_size=8,
+        per_device_train_batch_size=4,
         per_device_eval_batch_size=2,
         gradient_accumulation_steps=2,  # 4
         # optim="adamw_torch",
-        optim="paged_adamw_32bit",
-        # optim="paged_adamw_8bit",
-        num_train_epochs=1,
+        # optim="paged_adamw_32bit",
+        optim="paged_adamw_8bit",
+        num_train_epochs=4,
         eval_strategy="steps",
         eval_steps=0.2,
         logging_steps=1,
@@ -204,7 +204,7 @@ def main():
         # TK TK OPTIM2
         gradient_checkpointing=True,  # Enable gradient checkpointing
         report_to="wandb",
-        run_name="cluster000"
+        run_name="LETSGOOOOO"
     )
 
     trainer = SFTTrainer(

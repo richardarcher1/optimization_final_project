@@ -7,4 +7,4 @@
 # scp rka28@hpc-sms.som.yale.edu:/gpfs/home/rka28/optimization_final_project/data/2_training_ready/mymethod/take00/training3.pt data/2_training_ready/mymethod/take00/training3.pt
 # scp rka28@hpc-sms.som.yale.edu:/gpfs/home/rka28/optimization_final_project/data/2_training_ready/mymethod/take00/training4.pt data/2_training_ready/mymethod/take00/training4.pt
 # scp rka28@hpc-sms.som.yale.edu:/gpfs/home/rka28/optimization_final_project/data/2_training_ready/embedding00/train_dataset01.pth data/2_training_ready/embedding00/
-scp -r rka28@hpc-sms.som.yale.edu:/gpfs/home/rka28/optimization_final_project/weights/sft/run01/* weights/sft/run01/
+scp -r rka28@hpc-sms.som.yale.edu:/gpfs/home/rka28/optimization_final_project/weights/sft/run02/* weights/sft/run02/
